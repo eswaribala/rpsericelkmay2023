@@ -1,0 +1,9 @@
+create the index with shards and replicas
+
+PUT /products
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  }
+}
