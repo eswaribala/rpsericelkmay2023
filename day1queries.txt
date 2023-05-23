@@ -7,3 +7,7 @@ PUT /products
     "number_of_replicas": 1
   }
 }
+
+To check the index
+
+http://localhost:9200/_cat/indices?v
