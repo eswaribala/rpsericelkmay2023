@@ -11,3 +11,12 @@ PUT /products
 To check the index
 
 http://localhost:9200/_cat/indices?v
+
+To create the document with id
+
+POST /products/_doc/1
+{
+  "productId":1001,
+  "name":"laptop",
+  "cost":45000
+}
