@@ -20,3 +20,10 @@ POST /products/_doc/1
   "name":"laptop",
   "cost":45000
 }
+
+
+Search for the products
+GET /products/_search
+
+GET /products/_doc/2
+
