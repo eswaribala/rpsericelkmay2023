@@ -27,3 +27,9 @@ GET /products/_search
 
 GET /products/_doc/2
 
+POST /products/_update/2
+{
+  "doc": {
+    "cost":30000
+  }
+}
