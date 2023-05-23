@@ -1,0 +1,91 @@
+https://www.elastic.co/guide/en/elasticsearch/reference/current/_exploring_your_data.html
+cluster health
+curl -XGET "http://localhost:9200/_cluster/health"
+curl -XGET "http://localhost:9200/_cat/nodes?v"
+curl -XGET "http://localhost:9200/_cat/indices?v"
+curl -XGET "http://localhost:9200/members?pretty"
+curl -XPUT "http://localhost:9200/blog/123"
+{
+"title": "My first blog entry",
+"text": "Just trying this out...",
+"date": "2014/01/01"
+}
+
+curl -XPUT "localhost:9200/customer"
+curl -XPUT "localhost:9200/employee"
+curl -XPUT "localhost:9200/customer/external/1?pretty" -d "{  \"name\" : \"Franklin Storm\" }"
+curl -XPUT "localhost:9200/employee/external/1?pretty" -d "{  \"name\" : \"Ashok Kumar\", \"age\" : 45}"
+
+
+curl -XGET "localhost:9200/customer/external/1?pretty"
+curl -XDELETE "localhost:9200/customer?pretty"
+
+curl -XPUT "localhost:9200/customer/external/2?pretty" -d "{  \"name\": \"Jane Doe\" }"
+curl -XPOST "localhost:9200/customer/external/2/_update?pretty" -d "{  \"doc\": { \"name\": \"Jane Doe\" }}"
+
+curl -XPOST "localhost:9200/customer/external/2/_update?pretty" -d "{  \"doc\": {  \"name\": \"Jane Doe\", \"age\": 20 }}"
+
+curl -XPOST "localhost:9200/customer/external/_bulk?pretty" -d "{\"index\":{\"_id\":\"3\"}}{\"name\": \"John Doe1\" }{\"index\":{\"_id\":\"4\"}}{\"name\": \"Jane Doe1\" }"
+
+curl -XPOST "localhost:9200/bank/account/_bulk?pretty" --data-binary "@accounts.json"
+curl "localhost:9200/_cat/indices?v"
+
+curl "localhost:9200/bank/_search?q=*&pretty"
+
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{  \"query\": { \"match_all\": {} } }"
+
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{  \"query\": { \"match_all\": {} },  \"_source\": [\"account_number\", \"balance\"] }"
+
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{  \"query\": { \"match\": { \"account_number\": 20 } }}"
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{  \"query\": { \"match\": { \"address\": \"mill\" } }}"
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{  \"query\": { \"match_phrase\": { \"address\": \"mill lane\" } }}"
+
+curl -XPOST "localhost:9200/bank/_search?pretty" -d " { \"query\": { \"bool\": { \"should\": [ {\"match\": { \"address\": \"mill\" } }, { \"match\": { \"address\": "lane\"]}}}"
+
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{ \"query\": {\"bool\": {\"must\": { \"match_all\": {} },\"filter\": {\"range\": {\"balance\": {\"gte\": 20000,\"lte\": 30000 }}}}}}"
+
+curl -XPOST "localhost:9200/bank/_search?pretty" -d "{\"size\": 0,\"aggs\": {\"group_by_age\": {\"range\": {\"field\": \"age\",\"ranges\": [{\"from\": 20,\"to\": 30},{\"from\": 30,\"to\": 40}, {\"from\": 40,\"to\": 50}]},\"aggs\": {\"group_by_gender\": {\"terms\": {\"field\": \"gender\"},\"aggs\": {\"average_balance\": { \"avg\": {\"field\": \"balance\"}}}}}}}}"
+
+
+curl -XPUT "http://localhost:9200/twitter/tweet/1" -d "{\"user\" : \"kimchy\",\"post_date\" : \"2009-11-15T14:12:12\",\"message\" : \"trying out Elasticsearch\"}"
+
+curl -XPOST "http://localhost:9200/twitter/tweet" -d "{\"user\" : \"kimchy\",\"post_date\" : \"2009-11-15T14:12:12\",\"message\" : \"trying out Elasticsearch\"}"
+
+curl -XPOST "http://localhost:9200/twitter/tweet?routing=kimchy" -d "{\"user\" : \"kimchy\",\"post_date\" : \"2009-11-15T14:12:12\",\"message\" : \"trying out Elasticsearch\"}"
+
+curl -XGET "http://localhost:9200/twitter/tweet/1"
+
+curl -XHEAD -i "http://localhost:9200/twitter/tweet/1"
+
+
+curl -XPUT "http://localhost:9200/movies/movie/1" -d "{\"title\": \"The Godfather\",\"director\": \"Francis Ford Coppola\",\"year\": 1972}"
+
+curl -XGET "http://localhost:9200/movies/movie/1"
+
+curl -XDELETE "http://localhost:9200/movies/movie/1"
+
+curl -XPUT "http://localhost:9200/movies/movie/2" -d "{ \"title\": \"Lawrence of Arabia\", \"director\": \"David Lean\", \"year\": 1962, \"genres\": [\"Adventure\", \"Biography\", \"Drama\"]}"
+
+
+curl -XPUT "http://localhost:9200/movies/movie/3" -d "{ \"title\": \"To Kill a Mockingbird\", \"director\": \"Robert Mulligan\", \"year\": 1962, \"genres\": [\"Crime\", \"Drama\", \"Mystery\"]}"
+
+
+curl -XGET "http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=50s"
+
+curl -XGET "http://localhost:9200/_nodes/stats"
+
+curl -XPUT "http://localhost:9200/library/book/1" -d "{
+\"title\": \"The Complete Sherlock Holmes\",\"author\": \"Arthur Conan
+Doyle\",\"year\": 1936,\"characters\": [\"Sherlock Holmes\",\"Dr.
+Watson\", \"G. Lestrade\"],\"tags\": [],\"copies\": 0, \"available\" :
+false, \"section\" : 12
+}"
+
+curl -XPOST "localhost:9200/members/external/_bulk?pretty&pretty" -d "
+{\"index\":{\"_id\":\"1\"}}
+{\"name\": \"John Doe\" }
+{\"index\":{\"_id\":\"2\"}}
+{\"name\": \"Jane Doe\" }"
+
+
+curl -XGET "http://localhost:9200/_count?pretty" -d ' { "query": { "match_all": {} } } '
