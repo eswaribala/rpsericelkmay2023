@@ -27,9 +27,22 @@ GET /products/_search
 
 GET /products/_doc/2
 
+Updating the document
 POST /products/_update/2
 {
   "doc": {
     "cost":30000
   }
 }
+
+Updating document using script
+
+POST /products/_update/2
+{
+  "script": {
+    "source": "ctx._source.cost--"
+  }
+}
+
+
+
