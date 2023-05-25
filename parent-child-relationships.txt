@@ -145,3 +145,47 @@ PUT /neweric-bank-account
 }
   }
 }
+
+
+
+GET neweric-bank-account/_mapping
+
+POST /neweric-bank-account/_doc/1?routing=1
+{
+  
+  "openDate":"2008-03-01",
+  "runningTotal":140000,
+  
+  "relation_type":{
+    "name":"account"
+  }
+
+}
+
+POST /neweric-bank-account/_doc/101?routing=1
+{
+  "amount":5600,
+  "timeStamp":"17:05:05",
+  "sender":"Parameswari",
+  "receiver":"Vignesh",
+  "relation_type":{
+    "name":"transction",
+    "account":1
+    
+  }
+}
+POST /neweric-bank-account/_doc/102?routing=1
+{
+  "amount":5700,
+  "timeStamp":"18:05:05",
+  "sender":"Parameswari",
+  "receiver":"Vignesh",
+  "relation_type":{
+    "name":"transction",
+    "account":1
+    
+  }
+}
+
+
+GET /neweric-bank-account/_doc/1
