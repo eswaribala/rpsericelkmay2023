@@ -16,3 +16,6 @@ PUT /_index_template/rps_template
 }
 
 GET /_index_template/rps_template
+
+PUT /rps_products
+GET /rps_products
