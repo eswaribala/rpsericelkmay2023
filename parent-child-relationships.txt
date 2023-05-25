@@ -101,3 +101,47 @@ POST /bankingcustomers/_doc/1001?routing=123
 
 
 GET /bankingcustomers/_doc/123
+
+
+============================================
+
+PUT /neweric-bank-account
+{
+  "mappings": {
+  "properties": {   
+  "account":{  
+    "properties": {
+  "runningTotal":{
+"type": "long"
+  },
+  "openDate":{
+"type": "text"
+  
+  }
+  }
+},
+  "transaction":{
+  "properties":{
+  "amount":{
+    "type": "long"
+  },
+  "sender":{
+    "type":"text"
+  },
+  "receiver":{
+"type": "text"
+  },
+  "timeStamp":{
+    "type":"text"
+  }
+  }
+  } ,
+  "account_transaction":{
+    "type": "join",
+    "relations":{
+      "account":"transaction"
+    }
+  }
+}
+  }
+}
