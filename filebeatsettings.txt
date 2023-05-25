@@ -1,0 +1,6 @@
+setup.template.name: "filebeat"
+setup.template.fields: "fields.yml"
+setup.template.overwrite: true
+setup.template.settings:
+  index.number_of_shards: 1
+  index.number_of_replicas: 1
