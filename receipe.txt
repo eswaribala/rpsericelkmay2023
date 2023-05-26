@@ -156,5 +156,16 @@ POST /receipe/_search
   }
 }
 
-
+POST /receipe/_search
+{
+    "query": {
+        "term" : {
+            "title": "pasta"
+        }
+    },
+    "_source" : ["title","steps"],
+    "sort": [
+        { "created": {"order":"desc"}}
+    ]
+}
 
