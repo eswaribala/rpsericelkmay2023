@@ -43,3 +43,12 @@ PUT employee-index-000001/_doc/2
    "job_description":"Require fresher comes with strong programming background"
 }
 
+GET employee-index-000001/_search
+{
+   "query":{
+      "query_string":{
+         "query":"\"fresher comes\"" 
+      }
+   }
+}
+
