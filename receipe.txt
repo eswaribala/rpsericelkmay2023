@@ -1,6 +1,33 @@
 Curl –H "Content-Type: application/x-ndjson" –XPOST "localhost:9200/receipe/doc/_bulk?pretty" --data-binary @test-data.json
 
 GET receipe/_search
+POST receipe/_search
+{
+    "query": {
+        "match" : {
+            "title" : "Fast and Easy Pasta"
+        }
+    },
+    "size": 2,
+    "from": 0,
+    "_source": [ "title" ],
+    "highlight": {
+        "fields" : {
+            "title" : {}
+        }
+    }
+}
+
+POST /receipe/_search
+{
+    "query": {
+        "multi_match" : {
+            "query" : "Pasta",
+            "fields": ["title", "steps"]
+        }
+    },
+    "_source": ["title", "steps"]
+}
 
 POST /receipe/_search
 {
