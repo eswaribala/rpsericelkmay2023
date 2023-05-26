@@ -113,3 +113,12 @@ GET receipe/_search
 }
 
 
+GET receipe/_search
+{
+"query": {
+"regexp": {
+    "title": "[a-zA-Z0-9]"
+  }
+}
+}
+
