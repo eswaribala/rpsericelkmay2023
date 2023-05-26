@@ -52,3 +52,5 @@ GET employee-index-000001/_search
    }
 }
 
+#list the analyzers associated to index
+GET employee-index-000001/_settings
