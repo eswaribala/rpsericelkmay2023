@@ -121,6 +121,8 @@ GET receipe/_search
   }
 }
 }
+#the match_phrase query, it accepts a slop parameter to make the word order and relative positions somewhat less rigid. It also accepts the max_expansions parameter to limit the number of terms matched in order to reduce resource
+
 GET receipe/_search
 {
 "query": {
