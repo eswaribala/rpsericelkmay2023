@@ -46,3 +46,29 @@ POST /receipe/_search
     }
   }
 }
+
+
+GET receipe/_search
+{
+"query": {
+"range": {
+    "ratings": {
+      "gte": 3,
+      "lte": 4.5
+    }
+  }
+}
+}
+
+GET receipe/_search
+{
+"query": {
+"range": {
+    "created": {
+      "gte": "2013/04/17",
+      "lte": "2023/04/17"
+    }
+  }
+}
+}
+
