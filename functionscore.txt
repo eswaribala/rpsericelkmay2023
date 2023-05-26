@@ -72,6 +72,20 @@ GET rentals/_search?format=yaml
   }
 }
 
+GET rentals/_search
+{
+  "_source": ["title", "rooms"],
+  "query": {
+    "bool": {
+      "should": [
+        { "range": { "rooms": { "lt": 4 }}},
+        { "range": { "rooms": { "gte": 4.5, "boost": 2 }}},
+        { "range": { "rooms": { "gte": 5.5, "boost": 3 }}}
+      ]
+    }
+  }
+}
+
 we look into another critical criterion, the rental fee or price. We combine them with our previous search.
 We switch to the function_score, that allows you to modify the score of documents that are retrieved by a query.
 We keep our room preferences.
