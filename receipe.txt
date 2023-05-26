@@ -169,6 +169,7 @@ POST /receipe/_search
     ]
 }
 
+# must vs filter --> filter does not contribute score calculations.
 POST receipe/_search
 {
 "query": {
