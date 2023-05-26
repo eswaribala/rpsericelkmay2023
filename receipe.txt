@@ -72,3 +72,12 @@ GET receipe/_search
 }
 }
 
+GET receipe/_search
+{
+"query": {
+"ids": {
+  "values": [3,4,5]
+}
+}
+}
+
