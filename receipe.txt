@@ -1,4 +1,4 @@
-
+Curl –H "Content-Type: application/x-ndjson" –XPOST "localhost:9200/receipe/doc/_bulk?pretty" --data-binary @test-data.json
 
 GET receipe/_search
 
