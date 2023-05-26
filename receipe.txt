@@ -99,3 +99,17 @@ GET receipe/_search
     }
   }
 }
+
+
+GET receipe/_search
+{
+"query": {
+"wildcard": {
+    "steps": {
+      "value": "ga*"
+    }
+  }
+}
+}
+
+
