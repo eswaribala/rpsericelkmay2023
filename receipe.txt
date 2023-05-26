@@ -80,4 +80,11 @@ GET receipe/_search
 }
 }
 }
-
+GET receipe/_search
+{
+"query": {
+"exists": {
+  "field": "servings"
+}
+}
+}
