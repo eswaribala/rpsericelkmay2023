@@ -135,3 +135,26 @@ GET receipe/_search
         }
 }
 }
+
+
+
+POST /receipe/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "bool" : { 
+          "should": [
+            { "match": { "ingredients.quantity": "450g" }},
+            { "match": { "ingredients.quantity": "4"  }} 
+          ],
+          "must": { "match": { "preparation_time_minutes":12 }} 
+        }
+      },
+      "must_not": { "match": {"title": "Spaghetti" }}
+    }
+  }
+}
+
+
+
