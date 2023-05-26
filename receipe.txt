@@ -197,3 +197,16 @@ POST receipe/_search
 
 }
 
+POST receipe/_search
+{
+    "query": {
+        "multi_match" : {
+            "query" : "Psata",
+            "fields": ["title", "steps"],
+            "fuzziness": "AUTO"
+        }
+    },
+    "_source": ["title", "steps", "created"],
+    "size": 1
+}
+
