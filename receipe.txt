@@ -121,4 +121,15 @@ GET receipe/_search
   }
 }
 }
-
+GET receipe/_search
+{
+"query": {
+ "match_phrase_prefix": {
+            "title": {
+                "query": "Easy and Fast",
+                "slop": 10,
+                "max_expansions": 10
+            }
+        }
+}
+}
