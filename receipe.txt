@@ -88,3 +88,14 @@ GET receipe/_search
 }
 }
 }
+
+GET receipe/_search
+{
+  "query": {
+"prefix": {
+      "description": {
+        "value": "meaty"
+      }
+    }
+  }
+}
