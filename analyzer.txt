@@ -33,4 +33,13 @@ PUT employee-index-000001
 }
 
 
+PUT employee-index-000001/_doc/1
+{
+   "job_description":"Require 15+ years experienced ELK Engineer comes with strong java background"
+}
+
+PUT employee-index-000001/_doc/2
+{
+   "job_description":"Require fresher comes with strong programming background"
+}
 
