@@ -1,0 +1,21 @@
+
+
+GET receipe/_search
+
+POST /receipe/_search
+{
+  "query": {
+    "bool": {
+      "must": {
+        "bool" : { 
+          "should": [
+            { "match": { "title": "Pasta" }},
+            { "match": { "title": "Dosa" }} 
+          ],
+          "must": { "match": { "preparation_time_minutes":12 }} 
+        }
+      },
+      "must_not": { "match": {"servings": "10" }}
+    }
+  }
+}
