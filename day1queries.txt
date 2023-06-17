@@ -44,5 +44,10 @@ POST /products/_update/2
   }
 }
 
-
+POST /customers/_update/1
+{
+  "script": {
+    "source": "ctx._source.customerId = ctx._source.customerId + 1000"
+  }
+}
 
