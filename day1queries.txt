@@ -50,4 +50,17 @@ POST /customers/_update/1
     "source": "ctx._source.customerId = ctx._source.customerId + 1000"
   }
 }
+POST /customers/_update/1
+{
+  "script": "ctx._source.remove(\"mobileNos\")"
+}
 
+POST /customers/_update/1
+{
+  "doc": {
+    "mobileNos":8056050425
+  }
+}
+
+
+GET /customers/_doc/1
