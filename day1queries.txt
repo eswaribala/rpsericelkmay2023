@@ -64,3 +64,22 @@ POST /customers/_update/1
 
 
 GET /customers/_doc/1
+
+
+POST /customers/_update/1
+{
+  "script": {
+    "source":  "ctx._source.remove('mobileNos');ctx._source.remove('city')"}
+ 
+}
+
+POST /customers/_update/1
+{
+  "doc": {
+    "mobileNos":8056050425,
+    "city":"chennai"
+  }
+}
+
+
+GET /customers/_doc/1
